@@ -22,3 +22,7 @@ in this repository I solve frozen lake using Q-Learning in combination with cred
 - [64x64 Notebook](./64x64.ipynb)
 - [128x128 Notebook](./128x128.ipynb)
 
+*The 128x128 map*
+
+<img width="638" height="676" alt="image" src="https://github.com/user-attachments/assets/cc98b9d1-b174-4025-9a39-9888015502cd" />
+
