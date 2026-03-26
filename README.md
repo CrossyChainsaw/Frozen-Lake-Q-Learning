@@ -1,4 +1,4 @@
-# Frozen Lake with Q-table–based method ❄️
+# Frozen Lake with Q-table ❄️
 This project solves the **Frozen Lake** environment from [Gymnasium](https://gymnasium.farama.org/) using a **custom RL-inspired approach** combined with **credit assignment**. Six grid sizes are tackled — from a trivial 4×4 up to a challenging 128×128 — with each notebook building on lessons learned from the previous one.
 
 > **Important**: All notebooks use `is_slippery=False` and assume no prior knowledge of the gift's location (it is always in the bottom right when using the provided map generator).
