@@ -1,24 +1,42 @@
-# Frozen Lake with Q-Learning
-in this repository I solve frozen lake using Q-Learning in combination with credit assignment. Important to mention is that all notebooks make use of `is_slippery` set to false, and in all notebooks I assume I don't know where the gift is located (It is always bottom right). In all files generally the same strategy is used (if not it is mentioned in changes per notebook):
-- Initialize a Q-Table with 0s for each observation and action combination
-- assign a -2 for an action in an observation that leads to falling into a hole
-- assign -1 to an action in an observation that keeps the agent in the same observation
-- Actions are chosen randomly, but actions that have a reward of < 0 are filtered away
-- If the gift is reached, assign credit to each previous step, whereas the reward given becomes smaller the longer ago the step was (this was bugged in 4x4 and 8x8)
-- The path is not optimized, once a path to the gift is found, training is stopped.
+# Frozen Lake with Q-table ❄️
+This project solves the **Frozen Lake** environment from [Gymnasium](https://gymnasium.farama.org/) using a **custom RL-inspired approach** combined with **credit assignment**. Six grid sizes are tackled — from a trivial 4×4 up to a challenging 128×128 — with each notebook building on lessons learned from the previous one.
 
-## Changes per notebook:
-- **4x4 and 8x8**: Notebook has a bug in the credit assignment, resulting in the agent to sometimes get stuck in loops. Also, this notebook makes use of decreasing exploration which is nonoptimal. 
-- **16x16 and 32x32**: Starting from 16x16, I fixed the credit assignment bug. The agent now doesnt overwrite rewards that are bigger. Elevate the max episode step from 500 to 1000. Also started making use of epochs starting from this notebook.
-- **64x64**: Elevated max steps to 5000 and made use of more epochs. Also started using a consistent exploration rate of 1 to enhance efficiency. 
-- **128x128**: In the 128x128 notebook the code has completely been revised, ensuring maximum efficiency, still trying to reach the gift without making assumptions.
-- Note: Theoretically, you could continue this proces forever. Finding the gift is just a game of chance, hoping your agent moves down and right enough times to get to the gift. To make this project more efficient, you could keep training after reaching the gift in combination with random moves to try to shorten the path to the gift. Also could you tell the agent that moving down and right are preferred over moving up and left.
+> **Important**: All notebooks use `is_slippery=False` and assume no prior knowledge of the gift's location (it is always in the bottom right when using the provided map generator).
 
-## Notebooks:
-- [4x4 Notebook](./4x4.ipynb)
-- [8x8 Notebook](./8x8.ipynb)
-- [16x16 Notebook](./16x16.ipynb)
-- [32x32 Notebook](./32x32.ipynb)
-- [64x64 Notebook](./64x64.ipynb)
-- [128x128 Notebook](./128x128.ipynb)
+## Table of Contents
+- [Strategy](#strategy)
+- [Changes Per Notebook](#changes-per-notebook)
+- [Results](#results)
+- [Possible Future Improvements](#possible-future-improvements)
 
+## Strategy
+The general approach used across all notebooks:
+
+1. Initialize the Q-Table with `0` for every observation-action pair.
+2. Assign `-2` to any action that causes the agent to fall into a hole.
+3. Assign `-1` to any action that leaves the agent in the same cell (stuck against a wall).
+4. Filter out actions with reward `< 0` during random exploration.
+5. On reaching the gift, back-propagate decayed credit to every step in the episode history.
+6. Stop training as soon as a valid path to the gift is found **(No path optimization is performed)**.
+
+## Changes Per Notebook
+
+| Notebook | Key Changes |
+|---|---|
+| **4×4** | Baseline implementation. Credit assignment has a bug, larger rewards can be overwritten, causing the agent to loop. Epsilon decays over time. |
+| **8×8** | Same code as 4×4, bug still present. |
+| **16×16** | Credit assignment bug fixed, rewards are only overwritten if the new value is larger. Max episode steps raised from 500 → 1000. Epochs introduced. |
+| **32×32** | Max steps raised to 1000. More epochs added to handle the larger search space. |
+| **64×64** | Max steps raised to 5000. Exploration rate fixed at `1` (no decay) for the full run, making sure every frame is spent trying to explore to maximize efficiency. |
+| **128×128** | Strategy revised and code fully revised for maximum efficiency. Read notebook for full explanation |
+
+## Results
+Every notebook successfully reaches the gift. Training stops as soon as the first valid path is discovered, the path is not guaranteed to be optimal. Theoretically, you could continue expanding the map forever. Finding the gift is just a game of chance, hoping your agent moves down and right enough times to reach the gift.
+
+*Image of the generated 128×128 map, the largest map I played:*
+
+<img width="638" height="676" alt="128x128 map" src="https://github.com/user-attachments/assets/cc98b9d1-b174-4025-9a39-9888015502cd" />
+
+## Possible Future Improvements
+- Continue training after finding the gift using random exploration to discover shorter paths.
+- Bias the action selection toward moving down and right, since the gift is always in the bottom-right corner.
