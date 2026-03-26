@@ -1,5 +1,5 @@
-# Frozen Lake with Q-Learning ❄️
-This project solves the **Frozen Lake** environment from [Gymnasium](https://gymnasium.farama.org/) using **Q-Learning** combined with **credit assignment**. Six grid sizes are tackled — from a trivial 4×4 up to a challenging 128×128 — with each notebook building on lessons learned from the previous one.
+# Frozen Lake with Q-table–based method ❄️
+This project solves the **Frozen Lake** environment from [Gymnasium](https://gymnasium.farama.org/) using a **custom RL-inspired approach** combined with **credit assignment**. Six grid sizes are tackled — from a trivial 4×4 up to a challenging 128×128 — with each notebook building on lessons learned from the previous one.
 
 > **Important**: All notebooks use `is_slippery=False` and assume no prior knowledge of the gift's location (it is always in the bottom right when using the provided map generator).
 
@@ -27,7 +27,7 @@ The general approach used across all notebooks:
 | **8×8** | Same code as 4×4, bug still present. |
 | **16×16** | Credit assignment bug fixed, rewards are only overwritten if the new value is larger. Max episode steps raised from 500 → 1000. Epochs introduced. |
 | **32×32** | Max steps raised to 1000. More epochs added to handle the larger search space. |
-| **64×64** | Max steps raised to 5000. Exploration rate fixed at `1` (no decay) for the full run, making sure every frame is spent trying to explore to maximize efficienxy. |
+| **64×64** | Max steps raised to 5000. Exploration rate fixed at `1` (no decay) for the full run, making sure every frame is spent trying to explore to maximize efficiency. |
 | **128×128** | Strategy revised and code fully revised for maximum efficiency. Read notebook for full explanation |
 
 ## Results
