@@ -7,7 +7,7 @@ This project solves the **Frozen Lake** environment from [Gymnasium](https://gym
 - [Strategy](#strategy)
 - [Changes Per Notebook](#changes-per-notebook)
 - [Results](#results)
-- [Future Improvements](#future-improvements)
+- [Possible Future Improvements](#possible-future-improvements)
 
 ## Strategy
 The general approach used across all notebooks:
@@ -37,6 +37,6 @@ Every notebook successfully reaches the gift. Training stops as soon as the firs
 
 <img width="638" height="676" alt="128x128 map" src="https://github.com/user-attachments/assets/cc98b9d1-b174-4025-9a39-9888015502cd" />
 
-## Future Improvements
+## Possible Future Improvements
 - Continue training after finding the gift using random exploration to discover shorter paths.
 - Bias the action selection toward moving down and right, since the gift is always in the bottom-right corner.
