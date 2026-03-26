@@ -1,5 +1,5 @@
 # Frozen Lake with Q-Learning ❄️
-in this repository I solve frozen lake using Q-Learning in combination with credit assignment. Important to mention is that all notebooks make use of `is_slippery` set to false, and in all notebooks I assume I don't know where the gift is located (It is always bottom right). In all files generally the same strategy is used (if not it is mentioned in changes per notebook):
+In this repository I solve frozen lake using Q-Learning in combination with credit assignment. Important to mention is that all notebooks in this repo make use of `is_slippery` set to false, and in all notebooks I assume I don't know where the gift is located (It is always in the bottom right if you use the provided generator). In all files generally the same strategy is used (if not it is mentioned in changes per notebook):
 - Initialize a Q-Table with 0s for each observation and action combination
 - assign a -2 for an action in an observation that leads to falling into a hole
 - assign -1 to an action in an observation that keeps the agent in the same observation
